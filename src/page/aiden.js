@@ -7,9 +7,9 @@ function Aiden() {
     useEffect(() => {
         console.log('컴포넌트가 화면에 나타남');
         return () => {
-          console.log('컴포넌트가 화면에서 사라짐');
+            console.log('컴포넌트가 화면에서 사라짐');
         };
-      }, []);
+    }, []);
 
     const handleClick = async () => {
         try {
@@ -30,6 +30,9 @@ function Aiden() {
         <div>
             <h4>Aiden</h4>
             <button onClick={handleClick}>클릭</button>
+            <select>
+                <option>{weatherData[0].dept1}</option>
+            </select>
             <h4>{weatherData[0].dept1}</h4>
         </div>
     );
