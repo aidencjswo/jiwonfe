@@ -12,12 +12,14 @@ function App() {
         <li onClick={()=>{navigate('/')}}>Project</li>
         <li onClick={()=>{navigate('aiden')}}>상영</li>
         <li onClick={()=>{navigate('london')}}>재홍</li>
+        <li onClick={()=>{navigate('notice')}}>공지사항</li>
       </div>
 
       <Routes>
         <Route path='/' element={<div>메인화면</div>}></Route>
         <Route path='aiden' element={<Aiden></Aiden>}/>
         <Route path='london' element={<London></London>}/>
+        <Route path='notice' element={<h4>공지사항</h4>}/>
         <Route path='*' element={<div>404</div>}/>
       </Routes>
       
