@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function Aiden() {
+function Weather() {
     let[selectLocation1,setSelectLocation1] = useState()
     let[selectLocation2,setSelectLocation2] = useState()
     let[selectLocation3,setSelectLocation3] = useState()
@@ -117,4 +117,4 @@ function Aiden() {
 
 
 
-export default Aiden;
+export default Weather;

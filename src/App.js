@@ -1,7 +1,9 @@
 import './App.css';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Aiden from './page/aiden';
+import Weather from './page/weather';
 import London from './page/london';
+import Bus from './page/bus';
+
 
 function App() {
   let navigate = useNavigate();
@@ -10,14 +12,16 @@ function App() {
     <div className="App">
       <div className = "Nav">
         <li onClick={()=>{navigate('/')}}>Project</li>
-        <li onClick={()=>{navigate('aiden')}}>상영</li>
+        <li onClick={()=>{navigate('weather')}}>날씨</li>
+        <li onClick={()=>{navigate('bus')}}>버스</li>
         <li onClick={()=>{navigate('london')}}>재홍</li>
         <li onClick={()=>{navigate('notice')}}>공지사항</li>
       </div>
 
       <Routes>
         <Route path='/' element={<div>메인화면</div>}></Route>
-        <Route path='aiden' element={<Aiden></Aiden>}/>
+        <Route path='weather' element={<Weather></Weather>}/>
+        <Route path='bus' element={<Bus></Bus>}/>
         <Route path='london' element={<London></London>}/>
         <Route path='notice' element={<h4>공지사항</h4>}/>
         <Route path='*' element={<div>404</div>}/>
