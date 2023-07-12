@@ -19,7 +19,7 @@ function Aiden() {
 
     const dept1select = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/weather/locations/dept1");
+            const response = await axios.get("http://121.131.135.84:8080/weather/locations/dept1");
             let copy = [dept1];
             copy = response.data
             setDept1(copy);
@@ -32,7 +32,7 @@ function Aiden() {
         let copy = selectLocation1
         copy = event
         setSelectLocation1(copy)
-        const response = await axios.post("http://localhost:8080/weather/locations/dept2",{"dept1":event});
+        const response = await axios.post("http://121.131.135.84:8080/weather/locations/dept2",{"dept1":event});
         try{
             let copy = [dept2];
             copy = response.data.data
@@ -47,7 +47,7 @@ function Aiden() {
         let copy = selectLocation2
         copy = event
         setSelectLocation2(copy)
-        const response = await axios.post("http://localhost:8080/weather/locations/dept3",{"dept1":selectLocation1,"dept2":event});
+        const response = await axios.post("http://121.131.135.84:8080/weather/locations/dept3",{"dept1":selectLocation1,"dept2":event});
         try{
             let copy = [dept3];
             copy = response.data.data
@@ -62,7 +62,7 @@ function Aiden() {
         let copy = selectLocation3
         copy = event
         setSelectLocation3(copy)
-        const response = await axios.post("http://localhost:8080/weather/show",{"dept1":selectLocation1,"dept2":selectLocation2,"dept3":event});
+        const response = await axios.post("http://121.131.135.84:8080/weather/show",{"dept1":selectLocation1,"dept2":selectLocation2,"dept3":event});
         try{
             let copy = [...weather]
             copy = response.data.data
@@ -77,13 +77,16 @@ function Aiden() {
 
     return (
         <div>
-            <h4>Aiden</h4>
+            <h2>Aiden</h2>
+            <h4>1.클릭을 누른다</h4>
+            <h4>2.선택 박스를 열어서 옵션을 선택한다</h4>
+            <h4>3.Dept3(동)까지 선택을 해야 날씨 정보가 업데이트 된다!</h4>
             <button onClick={dept1select}>클릭</button>
             <select onChange={(event) => dept2select(event.target.value)}>
                 <option aria-readonly>Dept1</option>
                 {
                     dept1.map((a,i)=>(
-                        <option key={a}>{a}</option>
+                        <option key={i}>{a}</option>
                     ))
                 }
             </select>
@@ -91,7 +94,7 @@ function Aiden() {
                 <option aria-readonly>Dept2</option>
                 {
                     dept2.map((a,i)=>(
-                        <option key={a}>{a}</option>
+                        <option key={i}>{a}</option>
                     ))
                 }
             </select>
@@ -99,13 +102,13 @@ function Aiden() {
                 <option aria-readonly>Dept3</option>
                 {
                     dept3.map((a,i)=>(
-                        <option key={a}>{a}</option>
+                        <option key={i}>{a}</option>
                     ))
                 }
             </select>
             {
                 weather.map((a,i)=>(
-                    <div>{a}</div>
+                    <div key={i}>{a}</div>
                 ))
             }
         </div>
