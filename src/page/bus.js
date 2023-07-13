@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 
 function Bus() {
-  var [test,setTest] = useState(0)
+  var [busNum,setBusNum] = useState()
   useEffect(()=>{
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.REACT_APP_KAKAO_API_KEY}&autoload=false`;
     document.head.appendChild(script);
-    console.log('mount')
 
     script.onload = () => {
       window.kakao.maps.load(function(){
@@ -22,14 +21,20 @@ function Bus() {
 
     return()=>{
       script.remove();
-      console.log('dismount')
     }
   
-  },[test])
+  },[busNum])
 
 
   return (
     <div>
+        <h4 style={{
+          margin:"0"
+        }}>{busNum}</h4>
+        <input onChange={(e)=>{
+          // setBusNum(this.value)
+          setBusNum(e.target.value)
+        }} type="text" placeholder="버스번호를입력하세요"></input>
         <div id="map" style={{
           width:"100%",
           height:"400px"
