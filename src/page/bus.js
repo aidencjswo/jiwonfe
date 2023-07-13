@@ -31,7 +31,7 @@ function Bus() {
   return (
     <div>
         <div id="map" style={{
-          width:"500px",
+          width:"100%",
           height:"400px"
         }}></div>
     </div>
