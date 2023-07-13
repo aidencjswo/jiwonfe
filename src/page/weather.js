@@ -11,12 +11,6 @@ function Weather() {
 
     let[weather,setWeather] = useState([])
 
-    useEffect(() => {
-        return () => {
-            console.log('컴포넌트가 화면에서 사라짐');
-        };
-    }, []);
-
     const dept1select = async () => {
         try {
             const response = await axios.get("http://121.131.135.84:8080/weather/locations/dept1");
