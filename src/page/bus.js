@@ -25,10 +25,10 @@ function Bus() {
       script.remove();
     }
   
-  },[busNum])
+  },[routeId])
 
   const searchBusNum = async(event)=>{
-    let response = await axios.post("http://localhost:8080/bus",{"route":event})
+    let response = await axios.post("http://121.131.135.84:8080/bus",{"route":event})
     try{
       let copy = routeId
       copy = response.data
