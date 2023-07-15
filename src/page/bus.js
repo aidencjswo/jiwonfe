@@ -1,7 +1,9 @@
+import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 
 function Bus() {
   var [busNum,setBusNum] = useState()
+  var [routeId,setRouteId] = useState()
   useEffect(()=>{
     const script = document.createElement("script");
     script.type = "text/javascript";
@@ -25,16 +27,30 @@ function Bus() {
   
   },[busNum])
 
+  const searchBusNum = async(event)=>{
+    let response = await axios.post("http://localhost:8080/bus",{"route":event})
+    try{
+      let copy = routeId
+      copy = response.data
+      setRouteId(copy)
+    }catch(error){
+      console.log(error.message)
+    }
+  }
+
+  
 
   return (
     <div>
         <h4 style={{
           margin:"0"
-        }}>{busNum}</h4>
+        }}>{routeId}</h4>
         <input onChange={(e)=>{
-          // setBusNum(this.value)
-          setBusNum(e.target.value)
-        }} type="text" placeholder="버스번호를입력하세요"></input>
+          searchBusNum(e.target.value)
+        }} type="text" placeholder="버스번호를 입력하세요"></input>
+        <button onClick={()=>{
+        
+        }}>조회하기</button>
         <div id="map" style={{
           width:"100%",
           height:"400px"
