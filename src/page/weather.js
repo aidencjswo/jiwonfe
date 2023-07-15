@@ -31,7 +31,6 @@ function Weather() {
             let copy = [dept2];
             copy = response.data.data
             setDept2(copy);
-            console.log(response.data)
         } catch (error) {
             console.log(error.message)
         }
@@ -46,7 +45,6 @@ function Weather() {
             let copy = [dept3];
             copy = response.data.data
             setDept3(copy);
-            console.log(response.data.data)
         } catch (error) {
             console.log(error.message)
         }
@@ -61,7 +59,6 @@ function Weather() {
             let copy = [...weather]
             copy = response.data.data
             setWeather(copy)
-            console.log(response.data)
         }catch(error){
             console.log(error.message)
         }
@@ -71,7 +68,7 @@ function Weather() {
 
     return (
         <div>
-            <h2>Aiden</h2>
+            <h2>기상청 날씨</h2>
             <h4>1.클릭을 누른다</h4>
             <h4>2.선택 박스를 열어서 옵션을 선택한다</h4>
             <h4>3.Dept3(동)까지 선택을 해야 날씨 정보가 업데이트 된다!</h4>
