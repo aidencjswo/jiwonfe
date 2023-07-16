@@ -28,7 +28,8 @@ function Bus() {
   },[routeId])
 
   const searchBusNum = async(event)=>{
-    let response = await axios.post("http://121.131.135.84:8080/bus",{"route":event})
+    console.log(`${process.env.REACT_APP_SERVER_HOST}/bus/routeId`)
+    let response = await axios.post(`${process.env.REACT_APP_SERVER_HOST}/bus/routeId`,{"route":event})
     try{
       let copy = routeId
       copy = response.data
@@ -38,8 +39,16 @@ function Bus() {
     }
   }
 
+  const searchBusInfo = async(event)=>{
+    let response = await axios.post(`${process.env.REACT_APP_SERVER_HOST}/bus/info`,{"routeId":event})
+    
+    try{
+      
+    }catch(error){
+      console.log(error.message)
+    }
+  }
   
-
   return (
     <div>
         <h4 style={{

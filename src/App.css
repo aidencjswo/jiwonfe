@@ -24,6 +24,13 @@
   color: white;
 }
 
+.chatRoom{
+  height:500px;
+  width:90%;
+  margin: 0 auto;
+  background-color: blanchedalmond;
+}
+
 .App-link {
   color: #61dafb;
 }
