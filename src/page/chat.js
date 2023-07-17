@@ -1,77 +1,76 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react";
 
-function Chat(){
-    let [serverChat,setServerChat] = useState()
-    let [chatLog,setChatLog] = useState([])
+function Chat() {
+    let [serverChat, setServerChat] = useState();
+    let [chatLog, setChatLog] = useState([]);
     const socketRef = useRef(null);
-    const inputRef = useRef()
+    const inputRef = useRef();
     const chatRoomRef = useRef();
 
+    useEffect(() => {
+    socketRef.current = new WebSocket("ws://localhost:8080/socket");
 
-    useEffect(()=>{
-        socketRef.current = new WebSocket("ws://localhost:8080/socket");
+    socketRef.current.onopen = function () {
+    console.log("연결 성공");
+    };
 
-        socketRef.current.onopen = function(){
-            console.log("연결 성공")
-        }
+    socketRef.current.onmessage = function (e) {
+    setChatLog((prevChatLog) => [
+        ...prevChatLog,
+        { sender: "상대방", message: e.data },
+    ]);
+    };
 
-        socketRef.current.onmessage = function (e) {
-            setChatLog((prevChatLog) => [...prevChatLog, e.data]); // 이전 상태를 사용하여 chatLog 업데이트
-        };
+    return () => {
+    socketRef.current.close();
+    console.log("연결 끊어짐");
+    };
+    }, []);
 
-        return()=>{
-            socketRef.current.close();
-            console.log("연결 끊어짐")
-        }
-    },[])
-
-    const sendMessage = (e) =>{
-        socketRef.current.send(inputRef.current.value)
-        let copy = [...chatLog]
-        copy.push(inputRef.current.value)
-        setChatLog(copy)
-        inputRef.current.value = ""; // input 요소의 값 비우기
-    }
+    const sendMessage = () => {
+    socketRef.current.send(inputRef.current.value);
+    let copy = [...chatLog];
+    copy.push({ sender: "나", message: inputRef.current.value });
+    setChatLog(copy);
+    inputRef.current.value = "";
+    };
 
     const handleKeyDown = (e) => {
-        if (e.key === "Enter") {
-            sendMessage()
-        }
+    if (e.key === "Enter") {
+        sendMessage();
+    }
     };
 
     useEffect(() => {
         scrollToBottom();
     }, [chatLog]);
-    
+
     const scrollToBottom = () => {
         chatRoomRef.current.scrollTop = chatRoomRef.current.scrollHeight;
     };
 
-    return(
-        <>  
-            <div className = "chatRoom" ref={chatRoomRef}>
-                
-
-                {
-                    console.log(chatLog)
-                }
-                {
-                    
-                    chatLog.map((a,i)=>(
-                        <div key={i}>{a}</div>
-                    ))
-                }
+    return (
+    <>
+        <div className="chatRoom" ref={chatRoomRef}>
+        {chatLog.map((chat, i) => (
+            <div
+            key={i}
+            className={`message ${chat.sender === "나" ? "right" : "left"}`}
+            >
+            <span className="sender">{chat.sender}:</span> {chat.message}
             </div>
-            <div className = "sendArea">
-                <input 
-                id="textInput" 
-                ref={inputRef}
-                onKeyDown={handleKeyDown}
-                ></input>
-                <button onClick={sendMessage}>보내기</button>
-            </div>
-        </>
-    )
+        ))}
+        </div>
+        <div className="sendArea">
+        <input
+            id="textInput"
+            ref={inputRef}
+            onKeyDown={handleKeyDown}
+        ></input>
+        <button onClick={sendMessage}>보내기</button>
+        </div>
+    </>
+    );
 }
 
-export default Chat
+export default Chat;
