@@ -8,7 +8,7 @@ function Chat() {
     const chatRoomRef = useRef();
 
     useEffect(() => {
-    socketRef.current = new WebSocket("ws://localhost:8080/socket");
+    socketRef.current = new WebSocket(`${process.env.REACT_APP_WEBSOCKET_SERVER_HOST}/socket`);
 
     socketRef.current.onopen = function () {
     console.log("연결 성공");
