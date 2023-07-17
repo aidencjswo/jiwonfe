@@ -5,6 +5,8 @@ function Chat(){
     let [chatLog,setChatLog] = useState([])
     const socketRef = useRef(null);
     const inputRef = useRef()
+    const chatRoomRef = useRef();
+
 
     useEffect(()=>{
         socketRef.current = new WebSocket("ws://localhost:8080/socket");
@@ -13,12 +15,9 @@ function Chat(){
             console.log("연결 성공")
         }
 
-        socketRef.current.onmessage = function(e) {
-            let copy = [...chatLog]
-            copy.push(e.data)
-            setChatLog(copy)
-            
-        }
+        socketRef.current.onmessage = function (e) {
+            setChatLog((prevChatLog) => [...prevChatLog, e.data]); // 이전 상태를 사용하여 chatLog 업데이트
+        };
 
         return()=>{
             socketRef.current.close();
@@ -26,8 +25,6 @@ function Chat(){
         }
     },[])
 
-
- 
     const sendMessage = (e) =>{
         socketRef.current.send(inputRef.current.value)
         let copy = [...chatLog]
@@ -36,17 +33,25 @@ function Chat(){
         inputRef.current.value = ""; // input 요소의 값 비우기
     }
 
-
-
     const handleKeyDown = (e) => {
         if (e.key === "Enter") {
             sendMessage()
         }
     };
 
+    useEffect(() => {
+        scrollToBottom();
+    }, [chatLog]);
+    
+    const scrollToBottom = () => {
+        chatRoomRef.current.scrollTop = chatRoomRef.current.scrollHeight;
+    };
+
     return(
         <>  
-            <div className = "chatRoom">
+            <div className = "chatRoom" ref={chatRoomRef}>
+                
+
                 {
                     console.log(chatLog)
                 }
@@ -56,12 +61,14 @@ function Chat(){
                         <div key={i}>{a}</div>
                     ))
                 }
-            <input 
+            </div>
+            <div className = "sendArea">
+                <input 
                 id="textInput" 
                 ref={inputRef}
                 onKeyDown={handleKeyDown}
                 ></input>
-            <button onClick={sendMessage}>보내기</button>
+                <button onClick={sendMessage}>보내기</button>
             </div>
         </>
     )

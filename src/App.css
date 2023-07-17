@@ -26,9 +26,21 @@
 
 .chatRoom{
   height:500px;
-  width:90%;
+  width:390px;
   margin: 0 auto;
   background-color: blanchedalmond;
+  display:flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  justify-content: flex-end;
+}
+.sendArea{
+  margin: 0 auto;
+  width:390px;
+}
+.sendArea #textInput{
+  width : 300px;
 }
 
 .App-link {
