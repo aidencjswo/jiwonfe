@@ -28,11 +28,13 @@ function Chat() {
     }, []);
 
     const sendMessage = () => {
-    socketRef.current.send(inputRef.current.value);
-    let copy = [...chatLog];
-    copy.push({ sender: "나", message: inputRef.current.value });
-    setChatLog(copy);
-    inputRef.current.value = "";
+        if(inputRef.current.value!=""){
+            socketRef.current.send(inputRef.current.value);
+            let copy = [...chatLog];
+            copy.push({ sender: "나", message: inputRef.current.value });
+            setChatLog(copy);
+            inputRef.current.value = "";
+        }
     };
 
     const handleKeyDown = (e) => {
@@ -67,7 +69,7 @@ function Chat() {
             ref={inputRef}
             onKeyDown={handleKeyDown}
         ></input>
-        <button onClick={sendMessage}>보내기</button>
+        <button onClick={sendMessage}>→</button>
         </div>
     </>
     );
