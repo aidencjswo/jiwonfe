@@ -47,6 +47,33 @@ input{
   margin-right: 10px;
 }
 
+.joinContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+}
+.joinContainer button{
+  font-size: 13px;
+  margin-top: 5px;
+  background-color:#fff;
+  border: 1px solid black;
+  padding: 3px;
+}
+.joinContainer>div{
+  padding-top : 20px;
+}
+
+.pwSuccess{
+  color : blue;
+  font-size : 10px;
+}
+
+.pwFail{
+  color : red;
+  font-size : 10px;
+}
+
 .chatRoom{
   height:500px;
   width:390px;

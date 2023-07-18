@@ -1,7 +1,10 @@
 import axios from "axios"
 import { useState } from "react"
+import { Route, useNavigate } from "react-router-dom"
 
 function Main(){
+
+    let navigate = useNavigate()
 
     let [id , setId] = useState()
     let [pw , setPw] = useState()
@@ -34,10 +37,12 @@ function Main(){
             <div>
                 <button onClick={()=>{
                     
-                        
+                    
                     }
                 }>로그인</button>
-                <button>회원가입</button>
+                <button onClick={()=>{
+                    navigate("/join")
+                }}>회원가입</button>
             </div>
         </div>
     )

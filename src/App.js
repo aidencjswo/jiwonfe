@@ -5,6 +5,7 @@ import London from './page/london';
 import Chat from './page/chat';
 import Bus from './page/bus';
 import Main from './page/main';
+import Join from './page/join';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path='chat' element={<Chat></Chat>}/>
         <Route path='london' element={<London></London>}/>
         <Route path='notice' element={<h4>공지사항</h4>}/>
+        <Route path='join' element={<Join></Join>}/>
         <Route path='*' element={<div>404</div>}/>
       </Routes>
       
