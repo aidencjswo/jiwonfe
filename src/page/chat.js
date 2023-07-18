@@ -53,15 +53,17 @@ function Chat() {
 
     return (
     <>
-        <div className="chatRoom" ref={chatRoomRef}>
-        {chatLog.map((chat, i) => (
-            <div
-            key={i}
-            className={`message ${chat.sender === "나" ? "right" : "left"}`}
-            >
-            <span className="sender">{chat.sender}:</span> {chat.message}
+        <div className="chatRoomContainer">
+            <div className="chatRoom" ref={chatRoomRef}>
+            {chatLog.map((chat, i) => (
+                <div
+                key={i}
+                className={`message ${chat.sender === "나" ? "right" : "left"}`}
+                >
+                <span className="sender">{chat.sender}:</span> {chat.message}
+                </div>
+            ))}
             </div>
-        ))}
         </div>
         <div className="sendArea">
         <input

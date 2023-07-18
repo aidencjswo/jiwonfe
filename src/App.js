@@ -4,6 +4,7 @@ import Weather from './page/weather';
 import London from './page/london';
 import Chat from './page/chat';
 import Bus from './page/bus';
+import Main from './page/main';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
       </div>
 
       <Routes>
-        <Route path='/' element={<div>메인화면</div>}></Route>
+        <Route path='/' element={<Main></Main>}></Route>
         <Route path='weather' element={<Weather></Weather>}/>
         <Route path='bus' element={<Bus></Bus>}/>
         <Route path='chat' element={<Chat></Chat>}/>

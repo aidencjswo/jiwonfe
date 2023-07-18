@@ -28,6 +28,25 @@ input{
   color: white;
 }
 
+.mainContainer{
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContainer button{
+  font-size: 13px;
+  margin-top: 5px;
+  background-color:#fff;
+  border: 1px solid black;
+  padding: 3px;
+}
+.mainContainer button:first-child{
+  margin-right: 10px;
+}
+
 .chatRoom{
   height:500px;
   width:390px;
@@ -35,7 +54,7 @@ input{
   background-color: blanchedalmond;
   display:flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   justify-content: flex-end;
 }
