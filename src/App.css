@@ -64,12 +64,12 @@ input{
   padding-top : 20px;
 }
 
-.pwSuccess{
+.chkSuccess{
   color : blue;
   font-size : 10px;
 }
 
-.pwFail{
+.chkFail{
   color : red;
   font-size : 10px;
 }
