@@ -37,7 +37,6 @@ input{
   flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
-  justify-content: flex-end;
 }
 
 
